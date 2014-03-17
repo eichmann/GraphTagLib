@@ -1,1 +1,26 @@
 * text=auto !eol
+/.classpath -text
+/.project -text
+.settings/org.eclipse.jdt.core.prefs -text
+.settings/org.eclipse.wst.common.component -text
+.settings/org.eclipse.wst.common.project.facet.core.xml -text
+.settings/org.maven.ide.eclipse.prefs -text
+/pom.xml -text
+src/main/java/edu/uiowa/slis/graphtaglib/Edge.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/EdgeIterator.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/EdgeSource.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/EdgeTarget.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/EdgeWeight.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/Graph.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/GraphEdge.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/GraphNode.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/Node.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/NodeGroup.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/NodeIterator.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/NodeLabel.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/NodeScore.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/NodeUri.java -text
+src/main/resources/META-INF/taglib.tld -text
+src/non-packaged-resources/Model.clay -text
+src/test/java/edu/uiowa/slis/graphtaglib/README.txt -text
+src/test/resources/README.txt -text

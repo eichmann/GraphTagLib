@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<tlib-version>2.1</tlib-version>
+	<short-name>simp</short-name>
+	<uri>http://slis.uiowa.edu/graphtaglib</uri>
+
+	<tag>
+		<name>graph</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.Graph</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+
+	<tag>
+		<name>foreachNode</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.NodeIterator</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>pruneOrphanThreshold</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>node</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.Node</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>uri</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>label</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>group</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>score</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>nodeUri</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.NodeUri</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>nodeLabel</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.NodeLabel</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>nodeGroup</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.NodeGroup</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>nodeScore</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.NodeScore</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>foreachEdge</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.EdgeIterator</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+
+	<tag>
+		<name>edge</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.Edge</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>source</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>target</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>weight</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>edgeSource</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.EdgeSource</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>edgeTarget</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.EdgeTarget</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>edgeWeight</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.EdgeWeight</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+</taglib>
