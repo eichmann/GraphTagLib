@@ -16,6 +16,8 @@ public class Node extends TagSupport {
 	String label = null;
 	int group = 0;
 	double score = 0.0;
+	int auxInt = 0;
+	String auxString = null;
 
 
 	public int doStartTag() throws JspException {
@@ -24,14 +26,16 @@ public class Node extends TagSupport {
 			NodeIterator theIterator = (NodeIterator)findAncestorWithClass(this, NodeIterator.class);
 			
 			if (theIterator == null) {
-				log.debug("Adding node: " + uri + "\t" + label + "\tgroup: " + group + "\tscore: " + score);
-				theGraph.addNode(new GraphNode(uri, label, group, score));				
+				log.debug("Adding node: " + uri + "\t" + label + "\tgroup: " + group + "\tscore: " + score + "\tauxInt: " + auxInt + "\tauxString: " + auxString);
+				theGraph.addNode(new GraphNode(uri, label, group, score, auxInt, auxString));				
 				return SKIP_BODY;
 			} else {
 				uri = theIterator.currentNode.getUri();
 				label = theIterator.currentNode.getLabel();
 				group = theIterator.currentNode.getGroup();
 				score = theIterator.currentNode.getScore();
+				auxInt = theIterator.currentNode.getAuxInt();
+				auxString = theIterator.currentNode.getAuxString();
 				return EVAL_BODY_INCLUDE;
 			}
 		} catch (Exception e) {
@@ -85,6 +89,22 @@ public class Node extends TagSupport {
 
 	public void setScore(double score) {
 		this.score = score;
+	}
+
+	public int getAuxInt() {
+	    return auxInt;
+	}
+
+	public void setAuxInt(int auxInt) {
+	    this.auxInt = auxInt;
+	}
+
+	public String getAuxString() {
+	    return auxString;
+	}
+
+	public void setAuxString(String auxString) {
+	    this.auxString = auxString;
 	}
 
 

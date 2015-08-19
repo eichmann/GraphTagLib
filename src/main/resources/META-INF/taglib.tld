@@ -53,6 +53,18 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+
+		<attribute>
+			<name>auxInt</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>auxString</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 
 	<tag>
@@ -76,6 +88,18 @@
 	<tag>
 		<name>nodeScore</name>
 		<tag-class>edu.uiowa.slis.graphtaglib.NodeScore</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>nodeAuxInt</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.NodeAuxInt</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>nodeAuxString</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.NodeAuxString</tag-class>
 		<body-content>empty</body-content>
 	</tag>
 
