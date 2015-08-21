@@ -8,8 +8,9 @@ public class GraphNode {
 	double score = 0.0;
 	int auxInt = 0;
 	String auxString = null;
+	double auxDouble = 0.0;
 
-	public GraphNode(String uri, String label, int group, double score, int auxInt, String auxString) {
+	public GraphNode(String uri, String label, int group, double score, int auxInt, String auxString, double auxDouble) {
 		super();
 		this.uri = uri;
 		this.label = label;
@@ -17,6 +18,7 @@ public class GraphNode {
 		this.score = score;
 		this.auxInt = auxInt;
 		this.auxString = auxString;
+		this.auxDouble = auxDouble;
 	}
 
 	public int getID() {
@@ -73,6 +75,14 @@ public class GraphNode {
 
 	public void setAuxString(String auxString) {
 	    this.auxString = auxString;
+	}
+
+	public double getAuxDouble() {
+		return auxDouble;
+	}
+
+	public void setAuxDouble(double auxDouble) {
+		this.auxDouble = auxDouble;
 	}
 
 }

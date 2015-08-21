@@ -15,6 +15,7 @@ src/main/java/edu/uiowa/slis/graphtaglib/Graph.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/GraphEdge.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/GraphNode.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/Node.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/NodeAuxDouble.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeAuxInt.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeAuxString.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeGroup.java -text
