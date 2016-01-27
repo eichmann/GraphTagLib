@@ -2,8 +2,10 @@
 /.classpath -text
 /.project -text
 .settings/org.eclipse.jdt.core.prefs -text
+.settings/org.eclipse.m2e.core.prefs -text
 .settings/org.eclipse.wst.common.component -text
 .settings/org.eclipse.wst.common.project.facet.core.xml -text
+.settings/org.eclipse.wst.validation.prefs -text
 .settings/org.maven.ide.eclipse.prefs -text
 /pom.xml -text
 src/main/java/edu/uiowa/slis/graphtaglib/Edge.java -text
