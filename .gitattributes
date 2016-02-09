@@ -11,6 +11,7 @@
 src/main/java/edu/uiowa/slis/graphtaglib/Edge.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeGenerator.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeIterator.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/EdgeLookup.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeSource.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeTarget.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeWeight.java -text
