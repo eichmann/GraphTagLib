@@ -34,7 +34,6 @@ public class Edge extends TagSupport {
 			weight = theIterator.currentEdge.getWeight();
 //			return EVAL_BODY_INCLUDE;
 		}
-
 		
 //		currentEdge = theIterator.currentEdge;
 		log.trace("");

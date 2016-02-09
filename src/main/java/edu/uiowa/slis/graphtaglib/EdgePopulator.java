@@ -1,5 +1,5 @@
 package edu.uiowa.slis.graphtaglib;
 
-public interface EdgeGenerator {
+public interface EdgePopulator {
 	public void populateEdges(Graph theGraph);
 }

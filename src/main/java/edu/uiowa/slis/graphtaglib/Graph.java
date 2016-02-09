@@ -15,9 +15,20 @@ public class Graph extends BodyTagSupport {
 	private static final Log log = LogFactory.getLog(Graph.class);
 	Hashtable<String,GraphNode> nodeHash = null;
 	Hashtable<String,Integer> edgeHash = null;
-	Vector<GraphNode> nodes = null;
-	Vector<GraphEdge> edges = null;
+	public Vector<GraphNode> nodes = null;
+	public Vector<GraphEdge> edges = null;
 	double maxScore = 0.0;
+	
+	public Graph() {
+    	nodes = new Vector<GraphNode>();
+    	edges = new Vector<GraphEdge>();
+
+    	if (edgeHash == null) {
+    		edgeHash = new Hashtable<String,Integer>();
+    		nodeHash = new Hashtable<String,GraphNode>();
+    		
+    	}
+	}
 
     public int doStartTag() throws JspException {
     	nodes = new Vector<GraphNode>();
@@ -44,22 +55,22 @@ public class Graph extends BodyTagSupport {
     	maxScore = 0.0;
     }
     
-    void addNode(GraphNode node) {
+    public void addNode(GraphNode node) {
     	node.setID(nodes.size());
     	nodes.add(node);
     	maxScore = Math.max(node.getScore(), maxScore);
     	nodeHash.put(node.getUri(), node);
     }
     
-    GraphNode getNode(String uri) {
+    public GraphNode getNode(String uri) {
     	return nodeHash.get(uri);
     }
     
-    void addEdge(GraphEdge edge) {
+    public void addEdge(GraphEdge edge) {
     	edgeHash.put(edge.getSource().getUri() + " " + edge.getTarget().getUri(), 1);
     	edges.add(edge);
     }
-    
+        
     void pruneOrphans() {
     	Vector<GraphNode> newNodes = new Vector<GraphNode>();
     	log.info("int pruneOrphans - " + nodes.size() + " nodes");

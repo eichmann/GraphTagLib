@@ -9,7 +9,7 @@ public class EdgeLookup extends TagSupport {
 	String edgeLocator = null;
 	Class cls = null;
 	// It would be good to check if the Class implements EdgeGenerator...
-	EdgeGenerator edgeGen = null;
+	EdgePopulator edgeGen = null;
 			
 	public int doStartTag() throws JspException {
 		Graph theGraph = (Graph)findAncestorWithClass(this, Graph.class);
@@ -20,7 +20,7 @@ public class EdgeLookup extends TagSupport {
 	public void setLocator(String edgeLocator) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		this.edgeLocator = edgeLocator;
 		this.cls = Class.forName(edgeLocator);
-		this.edgeGen = (EdgeGenerator) cls.newInstance();
+		this.edgeGen = (EdgePopulator) cls.newInstance();
 	}
 	
 }
