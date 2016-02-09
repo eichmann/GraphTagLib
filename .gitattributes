@@ -9,6 +9,7 @@
 .settings/org.maven.ide.eclipse.prefs -text
 /pom.xml -text
 src/main/java/edu/uiowa/slis/graphtaglib/Edge.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/EdgeGenerator.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeIterator.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeSource.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeTarget.java -text
