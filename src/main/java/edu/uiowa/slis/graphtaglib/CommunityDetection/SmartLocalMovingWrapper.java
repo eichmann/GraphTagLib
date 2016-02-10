@@ -3,6 +3,6 @@ package edu.uiowa.slis.graphtaglib.CommunityDetection;
 public class SmartLocalMovingWrapper extends DetectorWrapper{
 	
 	public SmartLocalMovingWrapper() {
-		super(new SmartLocalMovingDetector());
+		this.theDetector = new SmartLocalMovingDetector();
 	}
 }
