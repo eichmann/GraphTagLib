@@ -21,14 +21,13 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.Connection;
 
-public class ImplicitEdgeLookup extends EdgeLookup implements EdgePopulator {
+public class ImplicitEdgeLookup extends EdgePopulator {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	static Logger logger = Logger.getLogger(ImplicitEdgeLookup.class);
 	private Vector<GraphNode> nodes = null;
-	//private Vector<GraphEdge> edges = null;
 	private DataSource theDataSource = null;
 	private Connection theConnection = null;
 	static boolean use_ssl = false;
@@ -64,20 +63,11 @@ public class ImplicitEdgeLookup extends EdgeLookup implements EdgePopulator {
 		initDatabaseConnection();
 		nodes = theGraph.nodes;
 		String uri = null;
-		String label = null;
-		int group = 0;
-		double score = 0.0;
 		
-		NodeIterator theIterator = (NodeIterator)findAncestorWithClass(this, NodeIterator.class);
-		Enumeration<GraphNode> nodeEnum = nodes.elements();
 		// Get co-authors for every node and add edge to graph
-	    while(nodeEnum.hasMoreElements()){
-	    	GraphNode source = nodeEnum.nextElement();
+		for (GraphNode source : nodes){
 	    	try {
 	    		uri = source.getUri(); 
-				label = source.getLabel();
-				group = source.getGroup();
-				score = source.getScore();
 
 				PreparedStatement theStmt = theConnection.prepareStatement("select author,coauthor,count,site,cosite from vivo_aggregated.coauthor where author=? or coauthor=?");
 				theStmt.setString(1, uri);
@@ -93,10 +83,7 @@ public class ImplicitEdgeLookup extends EdgeLookup implements EdgePopulator {
 						continue;
 					logger.trace(author + "\t" + coauthor + "\t" + count);
 					GraphNode target = theGraph.getNode(coauthor);
-					GraphEdge edge = new GraphEdge(source, target, count);
-					// Should we check if the edge already exists?
-					theGraph.addEdge(edge);	
-					
+					theGraph.addEdge(new GraphEdge(source, target, count));		
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
