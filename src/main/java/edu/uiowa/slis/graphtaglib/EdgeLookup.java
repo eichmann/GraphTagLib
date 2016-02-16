@@ -49,7 +49,7 @@ public class EdgeLookup extends TagSupport {
 		return 1;
 	}
 	
-	public void setLocator(String edgeLocator) {
+	public void setMethod(String edgeLocator) {
 		this.edgeLocator = edgeLocator;
 	}
 	
