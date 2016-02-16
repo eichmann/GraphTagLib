@@ -15,7 +15,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 
-import edu.uiowa.icts.RDFUtil.graph.ConceptRecognizer;
+//import edu.uiowa.icts.RDFUtil.graph.ConceptRecognizer;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -28,7 +28,7 @@ public class ImplicitEdgeLookup extends EdgeLookup implements EdgePopulator {
 	private static final long serialVersionUID = 1L;
 	static Logger logger = Logger.getLogger(ImplicitEdgeLookup.class);
 	private Vector<GraphNode> nodes = null;
-	private Vector<GraphEdge> edges = null;
+	//private Vector<GraphEdge> edges = null;
 	private DataSource theDataSource = null;
 	private Connection theConnection = null;
 	static boolean use_ssl = false;
@@ -45,16 +45,16 @@ public class ImplicitEdgeLookup extends EdgeLookup implements EdgePopulator {
 			}	
 			// Connect to database
 			try {
-			    DataSource theDataSource = (DataSource) new InitialContext().lookup("java:/comp/env/jdbc/VIVOTagLib");
-			    Connection theConnection = theDataSource.getConnection();
+			     theDataSource = (DataSource) new InitialContext().lookup("java:/comp/env/jdbc/VIVOTagLib");
+			     theConnection = theDataSource.getConnection();
 			} catch (Exception e) {
-			    logger.error("Exception raised in ConceptRecognizer: ", e);
-			    logger.error("Trying new data source for ConceptRecognizer");
+			    logger.error("Exception raised in ImplicitEdgeLookup: ", e);
+			    logger.error("Trying new data source for ImplicitEdgeLookup");
 			    try {
 				Class.forName("org.postgresql.Driver");
 				theConnection = DriverManager.getConnection("jdbc:postgresql://marengo.info-science.uiowa.edu/loki", props);
 			    } catch (Exception e1) {
-				logger.error("Exception raised in ConceptRecognizer: ", e1);
+				logger.error("Exception raised in ImplicitEdgeLookup: ", e1);
 			    }
 			}
 	}
