@@ -25,10 +25,11 @@ public class ImplicitEdgeLookup extends EdgePopulator {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	static Logger logger = Logger.getLogger(ImplicitEdgeLookup.class);
 	private Vector<GraphNode> nodes = null;
-	private DataSource theDataSource = null;
+	//private DataSource theDataSource = null;
 	private Connection theConnection = null;
 	static boolean use_ssl = false;
 	
@@ -44,7 +45,7 @@ public class ImplicitEdgeLookup extends EdgePopulator {
 			}	
 			// Connect to database
 			try {
-			     theDataSource = (DataSource) new InitialContext().lookup("java:/comp/env/jdbc/VIVOTagLib");
+			     //theDataSource = (DataSource) new InitialContext().lookup("java:/comp/env/jdbc/VIVOTagLib");
 			     theConnection = theDataSource.getConnection();
 			} catch (Exception e) {
 			    logger.error("Exception raised in ImplicitEdgeLookup: ", e);
