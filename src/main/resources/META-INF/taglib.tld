@@ -162,4 +162,28 @@
 		<tag-class>edu.uiowa.slis.graphtaglib.EdgeWeight</tag-class>
 		<body-content>empty</body-content>
 	</tag>
+	
+	<tag>
+		<name>edgeLookup</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.EdgeLookup</tag-class>
+		<body-content>JSP</body-content>
+		
+		<attribute>
+			<name>method</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>graphColorer</name>
+		<tag-class>edu.uiowa.slis.graphtaglib.GraphColorer</tag-class>
+		<body-content>JSP</body-content>
+		
+		<attribute>
+			<name>algorithm</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>
