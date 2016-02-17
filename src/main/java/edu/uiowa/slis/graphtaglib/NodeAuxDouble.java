@@ -10,26 +10,23 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class NodeAuxDouble extends TagSupport {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private static final Log log = LogFactory.getLog(NodeAuxDouble.class);
-	
-	public int doStartTag() throws JspException {
-		Node theNode = (Node)findAncestorWithClass(this, Node.class);
-		log.trace("");
-		try {
-			pageContext.getOut().print(theNode.getAuxDouble());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return SKIP_BODY;
+    private static final long serialVersionUID = 1L;
+    private static final Log log = LogFactory.getLog(NodeAuxDouble.class);
+
+    public int doStartTag() throws JspException {
+	Node theNode = (Node) findAncestorWithClass(this, Node.class);
+	log.trace("");
+	try {
+	    pageContext.getOut().print(theNode.getAuxDouble());
+	} catch (IOException e) {
+	    e.printStackTrace();
 	}
+	return SKIP_BODY;
+    }
 
     public int doEndTag() throws JspTagException, JspException {
-        clearServiceState();
-        return super.doEndTag();
+	clearServiceState();
+	return super.doEndTag();
     }
 
     private void clearServiceState() {

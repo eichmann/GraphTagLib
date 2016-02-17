@@ -1,4 +1,5 @@
 package edu.uiowa.slis.graphtaglib.CommunityDetection;
+
 /**
  * Network
  *

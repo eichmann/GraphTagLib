@@ -97,13 +97,16 @@ public class ModularityOptimizer {
 		if (printOutput && (nIterations > 1))
 		    System.out.format("Iteration: %d%n", j + 1);
 
-		// commented out to prevent compilation errors against modified Network class
-//		if (algorithm == 1)
-//		    update = network.runLouvainAlgorithm(resolution2, random);
-//		else if (algorithm == 2)
-//		    update = network.runLouvainAlgorithmWithMultilevelRefinement(resolution2, random);
-//		else if (algorithm == 3)
-//		    network.runSmartLocalMovingAlgorithm(resolution2, random);
+		// commented out to prevent compilation errors against modified
+		// Network class
+		// if (algorithm == 1)
+		// update = network.runLouvainAlgorithm(resolution2, random);
+		// else if (algorithm == 2)
+		// update =
+		// network.runLouvainAlgorithmWithMultilevelRefinement(resolution2,
+		// random);
+		// else if (algorithm == 3)
+		// network.runSmartLocalMovingAlgorithm(resolution2, random);
 		j++;
 
 		modularity = network.calcQualityFunction(resolution2);
@@ -163,17 +166,17 @@ public class ModularityOptimizer {
 	}
 
 	bufferedReader.close();
-	
+
 	return convertVectors(modularityFunction, node1Vector, node2Vector, edgeWeightVector);
     }
-    
+
     public static Network convertVectors(int modularityFunction, Vector<Integer> node1Vector, Vector<Integer> node2Vector, Vector<Double> edgeWeightVector) {
 	int[] firstNeighborIndex, neighbor, nNeighbors, node1, node2;
 	double[] edgeWeight1, edgeWeight2, nodeWeight;
 	int nNodes, nEdges;
-	int i,j;
+	int i, j;
 	Network network;
-	
+
 	node1 = new int[node1Vector.size()];
 	node2 = new int[node2Vector.size()];
 	edgeWeight1 = new double[edgeWeightVector.size()];
@@ -181,9 +184,9 @@ public class ModularityOptimizer {
 	for (j = 0; j < node1Vector.size(); j++) {
 	    node1[j] = node1Vector.elementAt(j);
 	    node2[j] = node2Vector.elementAt(j);
-	    
+
 	    nNodes = Math.max(nNodes, Math.max(node1[j], node2[j]));
-	    
+
 	    edgeWeight1[j] = edgeWeightVector.elementAt(j);
 	}
 	nNodes++;
