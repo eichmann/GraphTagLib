@@ -77,9 +77,13 @@ public class GraphColorer extends TagSupport{
     	
 	}
 	
+    public GraphColorer() {
+	
+    }
+    
     //For testing
     public GraphColorer(String alg) throws JspException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-    	setDetector(alg);
+	setAlgorithm(alg);
     }
     
 	public int doStartTag() throws JspException {
@@ -88,7 +92,7 @@ public class GraphColorer extends TagSupport{
 		return 1;
 	}
 	
-	public void setDetector(String alg) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public void setAlgorithm(String alg) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		this.coloringAlg = alg;
 		this.cls = Class.forName(alg);
 		this.theColorer = (Colorer) cls.newInstance();

@@ -1,7 +1,6 @@
 package edu.uiowa.slis.graphtaglib;
 
 import java.util.Vector;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,8 +16,11 @@ import org.apache.log4j.Logger;
 
 //import edu.uiowa.icts.RDFUtil.graph.ConceptRecognizer;
 
+
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 import java.sql.Connection;
 
 public class ImplicitEdgeLookup extends EdgePopulator {
@@ -32,6 +34,10 @@ public class ImplicitEdgeLookup extends EdgePopulator {
 	//private DataSource theDataSource = null;
 	private Connection theConnection = null;
 	static boolean use_ssl = false;
+	
+	public ImplicitEdgeLookup(String dataSource) throws NamingException {
+	    super(dataSource);
+	}
 	
 	public void initDatabaseConnection(){
 	//Database connection parameters
@@ -64,12 +70,13 @@ public class ImplicitEdgeLookup extends EdgePopulator {
 		initDatabaseConnection();
 		nodes = theGraph.nodes;
 		String uri = null;
+		Hashtable<String, String> visitedHash = new Hashtable<String, String>();
 		
 		// Get co-authors for every node and add edge to graph
 		for (GraphNode source : nodes){
 	    	try {
 	    		uri = source.getUri(); 
-
+	    		
 				PreparedStatement theStmt = theConnection.prepareStatement("select author,coauthor,count,site,cosite from vivo_aggregated.coauthor where author=? or coauthor=?");
 				theStmt.setString(1, uri);
 				theStmt.setString(2, uri);
@@ -82,8 +89,17 @@ public class ImplicitEdgeLookup extends EdgePopulator {
 					int cosite = rs.getInt(5);
 					if (site == 0 || cosite == 0)
 						continue;
-					logger.trace(author + "\t" + coauthor + "\t" + count);
-					GraphNode target = theGraph.getNode(coauthor);
+			    		if (visitedHash.containsKey(author+"|"+coauthor))
+			    		    continue;
+					logger.info(author + "\t" + coauthor + "\t" + count);
+					GraphNode target = uri.equals(author) ? theGraph.getNode(coauthor) : theGraph.getNode(author);
+					if (target == null) // edge involving node outside the graph frontier
+					    continue;
+					source.setGroup(site);
+					target.setGroup(cosite);
+					visitedHash.put(author+"|"+coauthor, author);
+					visitedHash.put(coauthor+"|"+author, coauthor);
+					logger.info("\tsource: " + source + "\ttarget: " + target);
 					theGraph.addEdge(new GraphEdge(source, target, count));		
 				}
 			} catch (SQLException e) {
