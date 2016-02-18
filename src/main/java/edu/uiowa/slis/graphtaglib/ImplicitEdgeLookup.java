@@ -96,8 +96,6 @@ public class ImplicitEdgeLookup extends EdgePopulator {
 		    if (target == null) // edge involving node outside the graph
 					// frontier
 			continue;
-		    source.setGroup(site);
-		    target.setGroup(cosite);
 		    visitedHash.put(author + "|" + coauthor, author);
 		    visitedHash.put(coauthor + "|" + author, coauthor);
 		    logger.info("\tsource: " + source + "\ttarget: " + target);
