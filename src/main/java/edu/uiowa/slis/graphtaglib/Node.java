@@ -14,7 +14,7 @@ public class Node extends TagSupport {
 
     String uri = null;
     String label = null;
-    int group = 0;
+    int[] group = new int[2];
     double score = 0.0;
     int auxInt = 0;
     String auxString = null;
@@ -26,7 +26,7 @@ public class Node extends TagSupport {
 	    NodeIterator theIterator = (NodeIterator) findAncestorWithClass(this, NodeIterator.class);
 
 	    if (theIterator == null) {
-		log.debug("Adding node: " + uri + "\t" + label + "\tgroup: " + group + "\tscore: " + score + "\tauxInt: " + auxInt + "\tauxString: "
+		log.debug("Adding node: " + uri + "\t" + label + "\tgroup: " + group[0] + "\tscore: " + score + "\tauxInt: " + auxInt + "\tauxString: "
 			+ auxString);
 		theGraph.addNode(new GraphNode(uri, label, group, score, auxInt, auxString, auxDouble));
 		return SKIP_BODY;
@@ -54,7 +54,7 @@ public class Node extends TagSupport {
     private void clearServiceState() {
 	uri = null;
 	label = null;
-	group = 0;
+	group = null;
 	score = 0.0;
     }
 
@@ -74,12 +74,12 @@ public class Node extends TagSupport {
 	this.label = label;
     }
 
-    public int getGroup() {
+    public int[] getGroup() {
 	return group;
     }
 
     public void setGroup(int group) {
-	this.group = group;
+	this.group[0] = group;
     }
 
     public double getScore() {

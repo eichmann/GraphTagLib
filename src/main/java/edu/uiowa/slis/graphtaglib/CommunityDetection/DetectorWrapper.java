@@ -23,23 +23,32 @@ public abstract class DetectorWrapper implements Colorer {
 
 	// Test graph
 	Graph graph = new Graph();
-	GraphNode node0 = new GraphNode("uri0", "name0", 1, 1, 0, "", 0);
+	int[] groups0 = {1, 1};
+	GraphNode node0 = new GraphNode("uri0", "name0", groups0, 1, 0, "", 0);
 	graph.addNode(node0);
-	GraphNode node1 = new GraphNode("uri1", "name1", 1, 1, 0, "", 0);
+	int[] groups1 = {1, 1};
+	GraphNode node1 = new GraphNode("uri1", "name1", groups1, 1, 0, "", 0);
 	graph.addNode(node1);
-	GraphNode node2 = new GraphNode("uri2", "name2", 1, 1, 0, "", 0);
+	int[] groups2 = {1, 1};
+	GraphNode node2 = new GraphNode("uri2", "name2", groups2, 1, 0, "", 0);
 	graph.addNode(node2);
-	GraphNode node3 = new GraphNode("uri3", "name3", 1, 1, 0, "", 0);
+	int[] groups3 = {1, 1};
+	GraphNode node3 = new GraphNode("uri3", "name3", groups3, 1, 0, "", 0);
 	graph.addNode(node3);
-	GraphNode node4 = new GraphNode("uri4", "name4", 1, 1, 0, "", 0);
+	int[] groups4 = {1, 1};
+	GraphNode node4 = new GraphNode("uri4", "name4", groups4, 1, 0, "", 0);
 	graph.addNode(node4);
-	GraphNode node5 = new GraphNode("uri5", "name5", 1, 1, 0, "", 0);
+	int[] groups5 = {1, 1};
+	GraphNode node5 = new GraphNode("uri5", "name5", groups5, 1, 0, "", 0);
 	graph.addNode(node5);
-	GraphNode node6 = new GraphNode("uri6", "name6", 1, 1, 0, "", 0);
+	int[] groups6 = {1, 1};
+	GraphNode node6 = new GraphNode("uri6", "name6", groups6, 1, 0, "", 0);
 	graph.addNode(node6);
-	GraphNode node7 = new GraphNode("uri7", "name7", 1, 1, 0, "", 0);
+	int[] groups7 = {1, 1};
+	GraphNode node7 = new GraphNode("uri7", "name7", groups7, 1, 0, "", 0);
 	graph.addNode(node7);
-	GraphNode node8 = new GraphNode("uri8", "name8", 1, 1, 0, "", 0);
+	int[] groups8 = {1, 1};
+	GraphNode node8 = new GraphNode("uri8", "name8", groups8, 1, 0, "", 0);
 	graph.addNode(node8);
 	GraphEdge edge0 = new GraphEdge(node0, node1, 1);
 	GraphEdge edge1 = new GraphEdge(node1, node2, 1);
@@ -71,8 +80,9 @@ public abstract class DetectorWrapper implements Colorer {
 	// Detect Communities
 	theWrapper.colorGraph(graph);
 	for (GraphNode n : graph.nodes) {
-	    System.out.println(n.getID() + ": " + n.getGroup());
+	    System.out.println(n.getID() + ": " + n.getGroup()[1]);
 	    // System.out.println(n.getUri() + ": " + n.getLabel());
+	    System.out.println("Group: " + n.getGroup()[0]);
 	}
 
     }
@@ -109,7 +119,7 @@ public abstract class DetectorWrapper implements Colorer {
 	for (int i = 0; i < clusters.length; i++) {
 	    for (int n : clusters[i]) {
 		String uri = URIs.get(n);
-		g.getNode(uri).setGroup(i);
+		g.getNode(uri).setCommunity(1, i);
 	    }
 	}
     }

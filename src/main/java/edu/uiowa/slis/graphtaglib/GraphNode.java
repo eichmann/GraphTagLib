@@ -4,13 +4,13 @@ public class GraphNode {
     int ID = 0;
     String uri = null;
     String label = null;
-    int group = 0;
+    int[] group = new int[2];
     double score = 0.0;
     int auxInt = 0;
     String auxString = null;
     double auxDouble = 0.0;
 
-    public GraphNode(String uri, String label, int group, double score, int auxInt, String auxString, double auxDouble) {
+    public GraphNode(String uri, String label, int[] group, double score, int auxInt, String auxString, double auxDouble) {
 	super();
 	this.uri = uri;
 	this.label = label;
@@ -53,12 +53,18 @@ public class GraphNode {
 	this.score = score;
     }
 
-    public int getGroup() {
+    public int[] getGroup() {
 	return group;
     }
 
     public void setGroup(int group) {
-	this.group = group;
+	this.group[0] = group;
+    }
+    
+    public void setCommunity(int comAlg, int comID) {
+    if (comAlg > 0) {
+    this.group[comAlg] = comID;
+    }
     }
 
     public int getAuxInt() {
