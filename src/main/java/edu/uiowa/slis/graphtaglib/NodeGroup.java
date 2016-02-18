@@ -1,6 +1,7 @@
 package edu.uiowa.slis.graphtaglib;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
@@ -17,7 +18,7 @@ public class NodeGroup extends TagSupport {
 	Node theNode = (Node) findAncestorWithClass(this, Node.class);
 	log.trace("");
 	try {
-	    pageContext.getOut().print(theNode.getGroup());
+	    pageContext.getOut().print(Arrays.toString(theNode.getGroup()));
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
