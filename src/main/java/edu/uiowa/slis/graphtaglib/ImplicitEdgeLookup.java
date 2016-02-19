@@ -91,14 +91,14 @@ public class ImplicitEdgeLookup extends EdgePopulator {
 			continue;
 		    if (visitedHash.containsKey(author + "|" + coauthor))
 			continue;
-		    logger.info(author + "\t" + coauthor + "\t" + count);
+		    logger.trace(author + "\t" + coauthor + "\t" + count);
 		    GraphNode target = uri.equals(author) ? theGraph.getNode(coauthor) : theGraph.getNode(author);
 		    if (target == null) // edge involving node outside the graph
 					// frontier
 			continue;
 		    visitedHash.put(author + "|" + coauthor, author);
 		    visitedHash.put(coauthor + "|" + author, coauthor);
-		    logger.info("\tsource: " + source + "\ttarget: " + target);
+		    logger.trace("\tsource: " + source + "\ttarget: " + target);
 		    theGraph.addEdge(new GraphEdge(source, target, count));
 		}
 	    } catch (SQLException e) {
