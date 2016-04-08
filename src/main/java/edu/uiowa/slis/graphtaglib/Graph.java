@@ -1,5 +1,6 @@
 package edu.uiowa.slis.graphtaglib;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -69,6 +70,14 @@ public class Graph extends BodyTagSupport {
     public void addEdge(GraphEdge edge) {
 	edgeHash.put(edge.getSource().getUri() + " " + edge.getTarget().getUri(), 1);
 	edges.add(edge);
+    }
+    
+    public void addColoring(String label, HashMap<String, Integer> colors) {
+    for (String uri : colors.keySet()) {
+    if (nodeHash.containsKey(uri)) {
+    nodeHash.get(uri).addColor(label, colors.get(uri));
+    }
+    }
     }
 
     void pruneOrphans() {

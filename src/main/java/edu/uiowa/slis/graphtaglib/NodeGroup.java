@@ -18,7 +18,7 @@ public class NodeGroup extends TagSupport {
 	Node theNode = (Node) findAncestorWithClass(this, Node.class);
 	log.trace("");
 	try {
-	    pageContext.getOut().print(Arrays.toString(theNode.getGroup()));
+	    pageContext.getOut().print(theNode.getGroup());
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}

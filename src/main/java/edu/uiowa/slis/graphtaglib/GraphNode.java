@@ -1,20 +1,23 @@
 package edu.uiowa.slis.graphtaglib;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class GraphNode {
     int ID = 0;
     String uri = null;
     String label = null;
-    int[] group = new int[2];
+    HashMap<String, Integer> groups = null;
     double score = 0.0;
     int auxInt = 0;
     String auxString = null;
     double auxDouble = 0.0;
 
-    public GraphNode(String uri, String label, int[] group, double score, int auxInt, String auxString, double auxDouble) {
+    public GraphNode(String uri, String label, int site, double score, int auxInt, String auxString, double auxDouble) {
 	super();
 	this.uri = uri;
 	this.label = label;
-	this.group = group;
+	this.addColor("site", site);
 	this.score = score;
 	this.auxInt = auxInt;
 	this.auxString = auxString;
@@ -52,19 +55,21 @@ public class GraphNode {
     public void setScore(double score) {
 	this.score = score;
     }
-
-    public int[] getGroup() {
-	return group;
+    
+    public int getGroup(String group) {
+    return groups.get(group);
     }
 
-    public void setGroup(int group) {
-	this.group[0] = group;
+    public HashMap<String, Integer> getGroups() {
+	return groups;
+    }
+
+    public void setGroups(HashMap<String, Integer> groups) {
+	this.groups = groups;
     }
     
-    public void setCommunity(int comAlg, int comID) {
-    if (comAlg > 0) {
-    this.group[comAlg] = comID;
-    }
+    public void addColor(String key, int color) {
+    this.groups.put(key, color);
     }
 
     public int getAuxInt() {

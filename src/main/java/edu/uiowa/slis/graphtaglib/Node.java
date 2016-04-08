@@ -1,5 +1,8 @@
 package edu.uiowa.slis.graphtaglib;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -14,11 +17,12 @@ public class Node extends TagSupport {
 
     String uri = null;
     String label = null;
-    int[] group = new int[2];
+    int group = -1;
     double score = 0.0;
     int auxInt = 0;
     String auxString = null;
     double auxDouble = 0.0;
+    String coloring = null;
 
     public int doStartTag() throws JspException {
 	try {
@@ -26,14 +30,14 @@ public class Node extends TagSupport {
 	    NodeIterator theIterator = (NodeIterator) findAncestorWithClass(this, NodeIterator.class);
 
 	    if (theIterator == null) {
-		log.debug("Adding node: " + uri + "\t" + label + "\tgroup: " + group[0] + "\tscore: " + score + "\tauxInt: " + auxInt + "\tauxString: "
+		log.debug("Adding node: " + uri + "\t" + label + "\tgroup: " + group + "\tscore: " + score + "\tauxInt: " + auxInt + "\tauxString: "
 			+ auxString);
 		theGraph.addNode(new GraphNode(uri, label, group, score, auxInt, auxString, auxDouble));
 		return SKIP_BODY;
 	    } else {
 		uri = theIterator.currentNode.getUri();
 		label = theIterator.currentNode.getLabel();
-		group = theIterator.currentNode.getGroup();
+		group = theIterator.currentNode.getGroup(this.coloring);
 		score = theIterator.currentNode.getScore();
 		auxInt = theIterator.currentNode.getAuxInt();
 		auxString = theIterator.currentNode.getAuxString();
@@ -54,7 +58,7 @@ public class Node extends TagSupport {
     private void clearServiceState() {
 	uri = null;
 	label = null;
-	group = null;
+	group = -1;
 	score = 0.0;
     }
 
@@ -73,13 +77,13 @@ public class Node extends TagSupport {
     public void setLabel(String label) {
 	this.label = label;
     }
-
-    public int[] getGroup() {
-	return group;
+    
+    public int getGroup() {
+    return group;
     }
 
     public void setGroup(int group) {
-	this.group[0] = group;
+	this.group = group;
     }
 
     public double getScore() {
@@ -112,6 +116,13 @@ public class Node extends TagSupport {
 
     public void setAuxDouble(double auxDouble) {
 	this.auxDouble = auxDouble;
+    }
+    
+    public void setColoring(String coloring) {
+    if (coloring != "site") {
+    this.coloring = "edu.uiowa.slis.graphtaglib.CommunityDetection." + coloring + "Wrapper" + String.valueOf(this.auxDouble);
+    }
+    else {this.coloring = "site";}
     }
 
 }
