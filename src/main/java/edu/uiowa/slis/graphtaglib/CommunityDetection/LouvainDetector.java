@@ -3,6 +3,14 @@ package edu.uiowa.slis.graphtaglib.CommunityDetection;
 import java.util.Random;
 
 public class LouvainDetector extends Detector {
+	
+	public LouvainDetector() {
+	super();
+	}
+	
+	public LouvainDetector(double resolution) {
+	super(resolution);
+	}
 
     boolean detectCommunity(Network network, double resolution, Random random) {
 	boolean update, update2;

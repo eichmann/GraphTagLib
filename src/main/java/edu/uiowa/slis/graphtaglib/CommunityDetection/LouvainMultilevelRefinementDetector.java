@@ -4,6 +4,14 @@ import java.util.Random;
 
 public class LouvainMultilevelRefinementDetector extends Detector {
 
+	public LouvainMultilevelRefinementDetector() {
+		super();
+	}
+	
+	public LouvainMultilevelRefinementDetector(double resolution) {
+		super(resolution);
+	}
+	
     boolean detectCommunity(Network network, double resolution, Random random) {
 	boolean update, update2;
 	Network reducedNetwork;

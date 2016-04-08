@@ -41,6 +41,10 @@ public abstract class Detector {
     public Detector() {
 
     }
+    
+    public Detector(double resolution) {
+    this.resolution = resolution;
+    }
 
     public Detector(int resolution, int randomStarts, int iterations) {
 	this.resolution = resolution;

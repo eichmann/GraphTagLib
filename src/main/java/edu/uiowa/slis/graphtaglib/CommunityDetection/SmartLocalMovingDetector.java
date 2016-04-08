@@ -3,6 +3,14 @@ package edu.uiowa.slis.graphtaglib.CommunityDetection;
 import java.util.Random;
 
 public class SmartLocalMovingDetector extends Detector {
+	
+	public SmartLocalMovingDetector() {
+	super();
+	}
+	
+	public SmartLocalMovingDetector(double resolution) {
+	super(resolution);
+	}
 
     boolean detectCommunity(Network network, double resolution, Random random) {
 	int i, j, k;
