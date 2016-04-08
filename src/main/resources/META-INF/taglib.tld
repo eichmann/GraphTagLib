@@ -71,6 +71,12 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		
+		<attribute>
+			<name>coloring</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
 
 	<tag>
@@ -189,6 +195,12 @@
 		<attribute>
 			<name>algorithm</name>
 			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>auxdouble</name>
+			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
