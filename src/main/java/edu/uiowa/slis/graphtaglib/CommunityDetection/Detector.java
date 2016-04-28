@@ -63,22 +63,22 @@ public abstract class Detector {
 	random = (randomSeed == 0 ? new Random() : new Random(randomSeed));
 	for (int i = 0; i < randomStarts; i++) {
 	    if (randomStarts > 1)
-		logger.debug("Random start: " + (i + 1));
+		logger.trace("Random start: " + (i + 1));
 
 	    network.initSingletonClusters();
 
 	    boolean update = true;
 	    for (int j = 0; j < iterations && update; j++) {
 		if (iterations > 1)
-		    logger.debug("Iteration: " + j);
+		    logger.trace("Iteration: " + j);
 
 		update = detectCommunity(network, resolution2, random);
 
 		modularity = network.calcQualityFunction(resolution2);
 
 		if (iterations > 1) {
-		    logger.debug("Modularity: " + modularity);
-		    logger.debug("Number of communities: " + network.getNClusters());
+		    logger.trace("Modularity: " + modularity);
+		    logger.trace("Number of communities: " + network.getNClusters());
 		}
 	    }
 
@@ -90,7 +90,7 @@ public abstract class Detector {
 
 	    if (randomStarts > 1) {
 		if (iterations == 1)
-		    logger.debug("Modularity: " + modularity);
+		    logger.trace("Modularity: " + modularity);
 	    }
 	}
 	endTime = System.currentTimeMillis();
