@@ -1,13 +1,17 @@
 package edu.uiowa.slis.graphtaglib;
 
 import java.util.HashMap;
-import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class GraphNode {
+    private static final Log log = LogFactory.getLog(GraphNode.class);
+
     int ID = 0;
     String uri = null;
     String label = null;
-    HashMap<String, Integer> groups = null;
+    HashMap<String, Integer> groups = new HashMap<String,Integer>();
     double score = 0.0;
     int auxInt = 0;
     String auxString = null;
@@ -57,7 +61,8 @@ public class GraphNode {
     }
     
     public int getGroup(String group) {
-    return groups.get(group);
+	log.trace("getGroup: " + group + " " + groups);
+	return groups.get(group);
     }
 
     public HashMap<String, Integer> getGroups() {

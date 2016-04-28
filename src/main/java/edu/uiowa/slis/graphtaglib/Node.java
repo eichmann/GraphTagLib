@@ -1,8 +1,5 @@
 package edu.uiowa.slis.graphtaglib;
 
-import java.util.HashMap;
-import java.util.List;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -115,14 +112,17 @@ public class Node extends TagSupport {
     }
 
     public void setAuxDouble(double auxDouble) {
+	log.trace("setting auxDouble: " + auxDouble);
 	this.auxDouble = auxDouble;
     }
     
     public void setColoring(String coloring) {
-    if (coloring != "site") {
-    this.coloring = "edu.uiowa.slis.graphtaglib.CommunityDetection." + coloring + "Wrapper" + String.valueOf(this.auxDouble);
-    }
-    else {this.coloring = "site";}
+	log.trace("setting coloring: " + coloring);
+	if (!coloring.equals("site")) {
+	    this.coloring = "edu.uiowa.slis.graphtaglib.CommunityDetection." + coloring + "Wrapper" + String.valueOf(this.auxDouble);
+	} else {
+	    this.coloring = "site";
+	}
     }
 
 }
