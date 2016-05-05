@@ -18,7 +18,7 @@ public class NodeScore extends TagSupport {
 	Node theNode = (Node) findAncestorWithClass(this, Node.class);
 	log.trace("");
 	try {
-	    pageContext.getOut().print((int) Math.round(Math.max(3.0, ((theNode.getScore() / theGraph.maxScore) * 10.0))));
+	    pageContext.getOut().print(theNode.getScore());
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
