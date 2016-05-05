@@ -19,7 +19,7 @@ public class Node extends TagSupport {
     int auxInt = 0;
     String auxString = null;
     double auxDouble = 0.0;
-    String coloring = null;
+    String coloring = "site";
 
     public int doStartTag() throws JspException {
 	try {
