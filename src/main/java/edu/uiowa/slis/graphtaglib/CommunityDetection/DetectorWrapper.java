@@ -57,6 +57,8 @@ public abstract class DetectorWrapper implements Colorer {
 //	int[] groups8 = {1, 1};
 	GraphNode node8 = new GraphNode("uri8", "name8", 1, 1, 0, "", 0);
 	graph.addNode(node8);
+	GraphNode node9 = new GraphNode("uri9", "name9", 1, 1, 0, "", 0);
+	graph.addNode(node9);
 	
 	HashMap<String, Integer> sites = new HashMap<String, Integer>();
 	sites.put("uri0", 1);
@@ -68,6 +70,8 @@ public abstract class DetectorWrapper implements Colorer {
 	sites.put("uri6", 2);
 	sites.put("uri7", 2);
 	sites.put("uri8", 1);
+	sites.put("uri9", 1);
+
 	
 	
 
@@ -114,10 +118,10 @@ public abstract class DetectorWrapper implements Colorer {
 	// Detect Communities
 	
 	for (GraphNode n : graph.nodes) {
-	    System.out.println(n.getID() + ": " + n.getGroups().get("site"));
+//	    System.out.println(n.getID() + ": " + n.getGroups().get("site"));
 	    System.out.println(n.getID() + ": " + n.getGroups().get("slmDetector"));
-	    System.out.println(n.getID() + ": " + n.getGroups().get("lDetector"));
-	    System.out.println(n.getID() + ": " + n.getGroups().get("lmrDetector"));
+//	    System.out.println(n.getID() + ": " + n.getGroups().get("lDetector"));
+//	    System.out.println(n.getID() + ": " + n.getGroups().get("lmrDetector"));
 
 
 //	    System.out.println(n.getID() + ": " + n.getGroup()[1]);
@@ -138,8 +142,13 @@ public abstract class DetectorWrapper implements Colorer {
 
     int[][] detect(Graph g) {
 	Network network = GenerateNetwork(g);
-	theDetector.detect(network);
-	return network.getNodesPerCluster();
+	if (g.edges.size() > 0) {
+	  theDetector.detect(network);
+	  return network.getNodesPerCluster();
+	}
+	else {
+	  return new int[1][0];
+	}
     }
 
     Network GenerateNetwork(Graph g) {
@@ -157,16 +166,29 @@ public abstract class DetectorWrapper implements Colorer {
 
     void addGroups(Vector<String> URIs, int[][] clusters, Graph g, String label) {
     	
+    	
+   	HashMap<String, Integer> colors = new HashMap<String, Integer>();
+
 	for (int i = 0; i < clusters.length; i++) {
-	HashMap<String, Integer> colors = new HashMap<String, Integer>();
 	
 	for (int n : clusters[i]) {
 	String uri = URIs.get(n);
+	URIs.set(n, null);
 	colors.put(uri, i);
     }
+	}
+	
+	//Add singleton nodes
+	int extraColors = 0;
+	for (String URI : URIs) {
+		if (URI != null) {
+			colors.put(URI, clusters.length + extraColors);
+			extraColors++;
+		}
+	}
 	
 	g.addColoring(label, colors);
-	}
+	
     }
 
 }
