@@ -5,20 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Properties;
-import java.util.Vector;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 
 //import edu.uiowa.icts.RDFUtil.graph.ConceptRecognizer;
 
-import javax.naming.InitialContext;
+
 import javax.naming.NamingException;
-import javax.sql.DataSource;
 
 import java.sql.Connection;
 
@@ -27,6 +22,7 @@ public class ImplicitEdgeLookup extends EdgePopulator {
 	 * 
 	 */
 
+    @SuppressWarnings("unused")
     private static final long serialVersionUID = 1L;
     static Logger logger = Logger.getLogger(ImplicitEdgeLookup.class);
     private Vector<GraphNode> nodes = null;

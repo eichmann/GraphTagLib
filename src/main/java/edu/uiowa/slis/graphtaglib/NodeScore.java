@@ -13,6 +13,7 @@ public class NodeScore extends TagSupport {
     private static final long serialVersionUID = 1L;
     private static final Log log = LogFactory.getLog(NodeScore.class);
 
+    @SuppressWarnings("unused")
     public int doStartTag() throws JspException {
 	Graph theGraph = (Graph) findAncestorWithClass(this, Graph.class);
 	Node theNode = (Node) findAncestorWithClass(this, Node.class);

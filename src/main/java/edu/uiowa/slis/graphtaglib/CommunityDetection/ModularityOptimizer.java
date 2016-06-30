@@ -19,6 +19,7 @@ import java.util.Random;
 import java.util.Vector;
 
 public class ModularityOptimizer {
+    @SuppressWarnings("unused")
     public static void main(String[] args) throws IOException {
 	boolean printOutput, update;
 	Console console;

@@ -1,6 +1,5 @@
 package edu.uiowa.slis.graphtaglib;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.jsp.JspException;

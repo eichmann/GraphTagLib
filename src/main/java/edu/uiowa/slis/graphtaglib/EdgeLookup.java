@@ -11,10 +11,12 @@ public class EdgeLookup extends TagSupport {
 
     String edgeLocator = null;
     String dataSource = null;
+    @SuppressWarnings("rawtypes")
     Class cls = null;
     // It would be good to check if the Class implements EdgeGenerator...
     EdgePopulator edgeGen = null;
 
+    @SuppressWarnings("unchecked")
     public int doStartTag() throws JspException {
 	try {
 	    this.cls = Class.forName(this.edgeLocator);

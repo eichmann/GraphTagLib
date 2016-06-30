@@ -21,6 +21,7 @@ public class GraphMultiColorer extends TagSupport {
 
 	public GraphMultiColorer() {}
 	
+    @SuppressWarnings("unused")
     public int doStartTag() throws JspException {
 	Graph theGraph = (Graph) findAncestorWithClass(this, Graph.class);
 

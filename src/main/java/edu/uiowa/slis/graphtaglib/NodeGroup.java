@@ -1,7 +1,6 @@
 package edu.uiowa.slis.graphtaglib;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
