@@ -57,6 +57,10 @@ public class Node extends TagSupport {
 	label = null;
 	group = -1;
 	score = 0.0;
+	auxInt = 0;
+	auxString = null;
+	auxDouble = 0.0;
+	coloring = "site";
     }
 
     public String getUri() {
