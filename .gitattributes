@@ -32,6 +32,7 @@ src/main/java/edu/uiowa/slis/graphtaglib/GraphEdge.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/GraphMultiColorer.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/GraphNode.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/ImplicitEdgeLookup.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/ImplicitOrganizationEdgeLookup.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/Node.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeAuxDouble.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeAuxInt.java -text

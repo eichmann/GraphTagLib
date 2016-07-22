@@ -25,9 +25,9 @@ public class ImplicitEdgeLookup extends EdgePopulator {
     @SuppressWarnings("unused")
     private static final long serialVersionUID = 1L;
     static Logger logger = Logger.getLogger(ImplicitEdgeLookup.class);
-    private Vector<GraphNode> nodes = null;
+    Vector<GraphNode> nodes = null;
     // private DataSource theDataSource = null;
-    private Connection theConnection = null;
+    Connection theConnection = null;
     static boolean use_ssl = false;
 
     public ImplicitEdgeLookup(String dataSource) throws NamingException {
