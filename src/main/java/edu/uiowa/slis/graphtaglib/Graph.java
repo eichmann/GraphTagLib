@@ -35,6 +35,7 @@ public class Graph extends BodyTagSupport {
 	nodes = new Vector<GraphNode>();
 	edges = new Vector<GraphEdge>();
 
+	log.info("in doStartTag");
 	if (edgeHash == null) {
 	    edgeHash = new Hashtable<String, Integer>();
 	    nodeHash = new Hashtable<String, GraphNode>();
@@ -44,6 +45,7 @@ public class Graph extends BodyTagSupport {
     }
 
     public int doEndTag() throws JspTagException, JspException {
+	log.info("in doEndTag");
 	clearServiceState();
 	return super.doEndTag();
     }
@@ -57,6 +59,15 @@ public class Graph extends BodyTagSupport {
     }
 
     public void addNode(GraphNode node) {
+	GraphNode clone = nodeHash.get(node.getUri());
+	
+	if (clone != null) {
+	    log.error("node already in graph with URI " + node.getUri());
+	    clone.setScore(Math.max(clone.getScore(), node.getScore()));
+	    maxScore = Math.max(clone.getScore(), maxScore);
+	    return;
+	}
+	
 	node.setID(nodes.size());
 	nodes.add(node);
 	maxScore = Math.max(node.getScore(), maxScore);

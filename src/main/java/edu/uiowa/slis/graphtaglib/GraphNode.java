@@ -62,7 +62,11 @@ public class GraphNode {
     
     public int getGroup(String group) {
 	log.trace("getGroup: " + group + " " + groups);
-	return groups.get(group);
+	try {
+	    return groups.get(group);
+	} catch (Exception e) {
+	   return 0;
+	}
     }
 
     public HashMap<String, Integer> getGroups() {

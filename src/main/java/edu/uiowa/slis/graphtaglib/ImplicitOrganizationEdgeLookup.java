@@ -46,7 +46,7 @@ public class ImplicitOrganizationEdgeLookup extends ImplicitEdgeLookup {
 			continue;
 		    visitedHash.put(organization + "|" + coorganization, organization);
 		    visitedHash.put(coorganization + "|" + organization, coorganization);
-		    logger.info("\tsource: " + source + "\ttarget: " + target);
+		    logger.trace("\tsource: " + source + "\ttarget: " + target);
 		    theGraph.addEdge(new GraphEdge(source, target, count));
 		}
 	    } catch (SQLException e) {

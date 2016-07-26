@@ -23,7 +23,7 @@ public class NodeIterator extends BodyTagSupport {
     public int doStartTag() throws JspException {
 	Graph theGraph = (Graph) findAncestorWithClass(this, Graph.class);
 
-	log.info("pruneOrphans: " + pruneOrphans);
+	log.debug("doStartTag pruneOrphans: " + pruneOrphans);
 	if (pruneOrphans)
 	    theGraph.pruneOrphans();
 
@@ -54,6 +54,7 @@ public class NodeIterator extends BodyTagSupport {
     }
 
     public int doEndTag() throws JspTagException, JspException {
+	log.debug("doEndTag");
 	clearServiceState();
 	return super.doEndTag();
     }

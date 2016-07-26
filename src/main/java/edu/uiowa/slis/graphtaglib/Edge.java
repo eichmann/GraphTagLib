@@ -23,7 +23,7 @@ public class Edge extends TagSupport {
 	EdgeIterator theIterator = (EdgeIterator) findAncestorWithClass(this, EdgeIterator.class);
 
 	if (theIterator == null) {
-	    log.debug("Adding edge source: " + source + "\ttarget: " + target + "\tweight: " + weight);
+	    log.trace("Adding edge source: " + source + "\ttarget: " + target + "\tweight: " + weight);
 	    theGraph.addEdge(new GraphEdge(theGraph.getNode(source), theGraph.getNode(target), weight));
 	    return SKIP_BODY;
 	} else {
