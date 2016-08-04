@@ -9,12 +9,11 @@ import javax.naming.NamingException;
 
 public class ImplicitOrganizationEdgeLookup extends ImplicitEdgeLookup {
 
-    public ImplicitOrganizationEdgeLookup(String dataSource) throws NamingException {
+    public ImplicitOrganizationEdgeLookup(String dataSource) throws NamingException, SQLException {
 	super(dataSource);
     }
 
     public void populateEdges(Graph theGraph) {
-	initDatabaseConnection();
 	nodes = theGraph.nodes;
 	String uri = null;
 	Hashtable<String, String> visitedHash = new Hashtable<String, String>();
@@ -22,9 +21,10 @@ public class ImplicitOrganizationEdgeLookup extends ImplicitEdgeLookup {
 	// Get co-authors for every node and add edge to graph
 	for (GraphNode source : nodes) {
 	    try {
+		conn = theDataSource.getConnection();
 		uri = source.getUri();
 
-		PreparedStatement theStmt = theConnection
+		PreparedStatement theStmt = conn
 			.prepareStatement("select organization,coorganization,count,site,cosite from vivo_aggregated.coorganization where organization=? or coorganization=?");
 		theStmt.setString(1, uri);
 		theStmt.setString(2, uri);
@@ -49,6 +49,7 @@ public class ImplicitOrganizationEdgeLookup extends ImplicitEdgeLookup {
 		    logger.trace("\tsource: " + source + "\ttarget: " + target);
 		    theGraph.addEdge(new GraphEdge(source, target, count));
 		}
+		conn.close();
 	    } catch (SQLException e) {
 		e.printStackTrace();
 	    }

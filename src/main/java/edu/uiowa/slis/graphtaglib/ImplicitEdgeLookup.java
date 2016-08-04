@@ -1,8 +1,6 @@
 package edu.uiowa.slis.graphtaglib;
 
-import java.util.Properties;
 import java.util.Vector;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

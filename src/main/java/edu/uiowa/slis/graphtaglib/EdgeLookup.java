@@ -1,14 +1,10 @@
 package edu.uiowa.slis.graphtaglib;
 
 import java.lang.reflect.Constructor;
-import java.sql.Connection;
-import java.sql.SQLException;
 
-import javax.naming.InitialContext;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.TagSupport;
-import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
