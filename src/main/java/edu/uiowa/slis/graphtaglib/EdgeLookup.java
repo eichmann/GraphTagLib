@@ -1,13 +1,21 @@
 package edu.uiowa.slis.graphtaglib;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
+import javax.naming.InitialContext;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.TagSupport;
+import javax.sql.DataSource;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class EdgeLookup extends TagSupport {
     private static final long serialVersionUID = 1L;
+    private static final Log log = LogFactory.getLog(EdgeLookup.class);
 
     String edgeLocator = null;
     String dataSource = null;
@@ -18,36 +26,30 @@ public class EdgeLookup extends TagSupport {
 
     @SuppressWarnings("unchecked")
     public int doStartTag() throws JspException {
+	log.debug("in doStartTag");
 	try {
 	    this.cls = Class.forName(this.edgeLocator);
 	    Constructor<?> con = this.cls.getConstructor(String.class);
-	    this.edgeGen = (EdgePopulator) con.newInstance(this.dataSource);
-	} catch (ClassNotFoundException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (NoSuchMethodException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (SecurityException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (InstantiationException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (IllegalAccessException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (IllegalArgumentException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (InvocationTargetException e) {
-	    // TODO Auto-generated catch block
+	    this.edgeGen = (EdgePopulator) con.newInstance("java:/comp/env/jdbc/VIVOTagLib");
+	} catch (Exception e) {
 	    e.printStackTrace();
 	}
 
 	Graph theGraph = (Graph) findAncestorWithClass(this, Graph.class);
 	edgeGen.populateEdges(theGraph);
-	return 1;
+	
+	return SKIP_BODY;
+    }
+
+    public int doEndTag() throws JspTagException, JspException {
+	log.debug("in doEndTag");
+	clearServiceState();
+	return super.doEndTag();
+    }
+
+    private void clearServiceState() {
+	edgeLocator = null;
+	edgeGen = null;
     }
 
     public void setMethod(String edgeLocator) {
@@ -57,5 +59,4 @@ public class EdgeLookup extends TagSupport {
     public void setSource(String source) {
 	this.dataSource = source;
     }
-
 }
