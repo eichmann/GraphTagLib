@@ -1,8 +1,10 @@
-package edu.uiowa.slis.graphtaglib;
+package edu.uiowa.slis.graphtaglib.filters;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import edu.uiowa.slis.graphtaglib.Graph;
 
 public abstract class EdgePopulator {
 

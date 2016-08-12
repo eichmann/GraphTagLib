@@ -1,4 +1,4 @@
-package edu.uiowa.slis.graphtaglib;
+package edu.uiowa.slis.graphtaglib.filters;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import java.util.Hashtable;
 
 import javax.naming.NamingException;
+
+import edu.uiowa.slis.graphtaglib.Graph;
+import edu.uiowa.slis.graphtaglib.GraphEdge;
+import edu.uiowa.slis.graphtaglib.GraphNode;
 
 public class ImplicitOrganizationEdgeLookup extends ImplicitEdgeLookup {
 

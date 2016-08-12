@@ -42,6 +42,8 @@ public class EdgeIterator extends BodyTagSupport {
 	if (edgeEnum.hasMoreElements()) {
 	    currentEdge = edgeEnum.nextElement();
 	    log.trace("edge source: " + currentEdge.source.ID + "\ttarget: " + currentEdge.target.ID + "\tweight: " + currentEdge.weight);
+	    log.trace("edge source: " + currentEdge.source.ID + " " + currentEdge.source.uri + "\ttarget: " + currentEdge.target.ID + " "
+			    + currentEdge.target.uri + "\tweight: " + currentEdge.weight);
 	    pageContext.setAttribute("isLastEdge", !edgeEnum.hasMoreElements());
 	    return EVAL_BODY_AGAIN;
 	}

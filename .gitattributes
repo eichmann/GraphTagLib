@@ -21,8 +21,6 @@ src/main/java/edu/uiowa/slis/graphtaglib/CommunityDetection/SmartLocalMovingDete
 src/main/java/edu/uiowa/slis/graphtaglib/CommunityDetection/SmartLocalMovingWrapper.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/Edge.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeIterator.java -text
-src/main/java/edu/uiowa/slis/graphtaglib/EdgeLookup.java -text
-src/main/java/edu/uiowa/slis/graphtaglib/EdgePopulator.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeSource.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeTarget.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/EdgeWeight.java -text
@@ -32,7 +30,6 @@ src/main/java/edu/uiowa/slis/graphtaglib/GraphEdge.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/GraphMultiColorer.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/GraphNode.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/ImplicitEdgeLookup.java -text
-src/main/java/edu/uiowa/slis/graphtaglib/ImplicitOrganizationEdgeLookup.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/Node.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeAuxDouble.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeAuxInt.java -text
@@ -42,6 +39,11 @@ src/main/java/edu/uiowa/slis/graphtaglib/NodeIterator.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeLabel.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeScore.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeUri.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/filters/EdgeLookup.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/filters/EdgePopulator.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/filters/ImplicitEdgeLookup.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/filters/ImplicitOrganizationEdgeLookup.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/filters/NodeDistance.java -text
 src/main/resources/META-INF/taglib.tld -text
 src/non-packaged-resources/Model.clay -text
 src/test/java/edu/uiowa/slis/graphtaglib/README.txt -text

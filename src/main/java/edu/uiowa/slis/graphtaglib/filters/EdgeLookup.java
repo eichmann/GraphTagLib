@@ -1,4 +1,4 @@
-package edu.uiowa.slis.graphtaglib;
+package edu.uiowa.slis.graphtaglib.filters;
 
 import java.lang.reflect.Constructor;
 
@@ -8,6 +8,8 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import edu.uiowa.slis.graphtaglib.Graph;
 
 public class EdgeLookup extends TagSupport {
     private static final long serialVersionUID = 1L;

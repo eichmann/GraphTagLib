@@ -7,6 +7,8 @@ import java.util.Vector;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
@@ -67,12 +69,43 @@ public class Graph extends BodyTagSupport {
 	    maxScore = Math.max(clone.getScore(), maxScore);
 	    return;
 	}
-	
 	node.setID(nodes.size());
 	nodes.add(node);
 	maxScore = Math.max(node.getScore(), maxScore);
 	nodeHash.put(node.getUri(), node);
     }
+    
+	public void removeNode(GraphNode node) {
+	// removing the node and its edges from the vectors and the hash
+	//log.debug(edgeHash.size() + ' ' + edges.size());
+	GraphNode clone = nodeHash.get(node.getUri());
+	GraphEdge edge = null;
+	if (clone != null) {
+	    nodes.remove(node);
+	    nodeHash.remove(node.getUri());
+	    // Remove all the edges of this node
+	    for (int x = edges.size()-1; x >= 0; x--){
+		    edge = edges.elementAt(x);
+		    if (edge.getSource() == node | edge.getTarget() == node){
+		    	log.trace("remove edge " + edge.getSource().getLabel() + " " + edge.getTarget().getUri());
+		    	try{
+		    	edges.remove(edge);
+		    	edgeHash.remove(edge.getSource().getUri() + " " + edge.getTarget().getUri());
+		    	edgeHash.remove(edge.getTarget().getUri() + " " + edge.getSource().getUri());
+		    	}
+		    	catch (Exception e) {
+		    	    e.printStackTrace();
+		    	}
+		    }
+	    }
+		resetNodeIDs();
+	    return;
+	}
+	else{
+		log.error("node not in graph with URI " + node.getUri());
+		return;
+	}
+	}
 
     public GraphNode getNode(String uri) {
 	return nodeHash.get(uri);
@@ -81,6 +114,11 @@ public class Graph extends BodyTagSupport {
     public void addEdge(GraphEdge edge) {
 	edgeHash.put(edge.getSource().getUri() + " " + edge.getTarget().getUri(), 1);
 	edges.add(edge);
+    }
+    
+    public void removeEdge(GraphEdge edge) {
+	edges.remove(edge);
+	edgeHash.remove(edge);
     }
     
     public void addColoring(String label, HashMap<String, Integer> colors) {
@@ -111,9 +149,13 @@ public class Graph extends BodyTagSupport {
 	}
 
 	nodes = newNodes;
+	resetNodeIDs();
+    }
+
+    void resetNodeIDs(){
 	for (int i = 0; i < nodes.size(); i++) {
+		log.debug(nodes.elementAt(i).getUri() + " " + i);
 	    nodes.elementAt(i).setID(i);
 	}
     }
-
 }
