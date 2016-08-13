@@ -40,7 +40,7 @@ public class ImplicitEdgeLookup extends EdgePopulator {
 	    // Get co-authors for every node and add edge to graph
 	    for (GraphNode source : nodes) {
 		uri = source.getUri();
-		logger.info("implicit URI: " + uri);
+		logger.debug("implicit URI: " + uri);
 		PreparedStatement theStmt = conn.prepareStatement("select author,coauthor,count,site,cosite from vivo_aggregated.coauthor where author=? or coauthor=?");
 		theStmt.setString(1, uri);
 		theStmt.setString(2, uri);
