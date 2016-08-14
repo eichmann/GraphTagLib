@@ -38,6 +38,9 @@ src/main/java/edu/uiowa/slis/graphtaglib/NodeIterator.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeLabel.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeScore.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/NodeUri.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/SiteID.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/SiteIDIterator.java -text
+src/main/java/edu/uiowa/slis/graphtaglib/SiteName.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/filters/EdgeLookup.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/filters/EdgePopulator.java -text
 src/main/java/edu/uiowa/slis/graphtaglib/filters/ImplicitEdgeLookup.java -text
