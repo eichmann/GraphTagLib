@@ -80,7 +80,7 @@ public class Graph extends BodyTagSupport {
 	}
 	
 	// removing the node and its edges from the vectors and the hash
-	log.debug("edge hash size: " + edgeHash.size() + " vector size: " + edges.size());
+	log.trace("edge hash size: " + edgeHash.size() + " vector size: " + edges.size());
 	nodes.remove(node);
 	nodeHash.remove(node.getUri());
 	
@@ -147,7 +147,7 @@ public class Graph extends BodyTagSupport {
     void resetNodeIDs() {
 	maxScore = 0;
 	for (int i = 0; i < nodes.size(); i++) {
-	    log.debug(nodes.elementAt(i).getUri() + " " + i);
+	    log.trace(nodes.elementAt(i).getUri() + " " + i);
 	    nodes.elementAt(i).setID(i);
 	    maxScore = Math.max(nodes.elementAt(i).getScore(), maxScore);
 	}

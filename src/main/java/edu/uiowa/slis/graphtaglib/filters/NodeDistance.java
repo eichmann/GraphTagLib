@@ -49,8 +49,9 @@ public class NodeDistance extends TagSupport {
 	edges = theGraph.edges;
 	String uri = null;
 	Hashtable<String, String> visitedHash = new Hashtable<String, String>();
+	Hashtable<Integer, String> sites_hash =new Hashtable<Integer, String>();
 	String sites = "";
-
+	
 	try {
 	    theDataSource = (DataSource) new InitialContext().lookup(dataSource);
 	    logger.debug("nodeDistanceFilter with node = " + selectedNode + " radius = " + String.valueOf(radius));
@@ -58,10 +59,6 @@ public class NodeDistance extends TagSupport {
 	    conn = theDataSource.getConnection();
 	    // Get co-authors for node and add edge to graph only if that
 	    // neighbor is within our radius
-
-	    // we have uri -> coauthors.uri -> site
-	    // PreparedStatement theStmt =
-	    // conn.prepareStatement("select candidate.*,person.uri from vivo_aggregated.person, vivo_aggregated.site_loc as candidate, vivo_aggregated.site_loc as center where center.id=person.id and center.id=? and circle(center.position,(?/111.0)) @> candidate.position");
 	    PreparedStatement theStmt = conn
 		    .prepareStatement("select candidate.* from vivo_aggregated.site_loc as candidate, vivo_aggregated.site_loc as center where center.id=? and circle(center.position,(?/111.0)) @> candidate.position");
 
@@ -71,37 +68,29 @@ public class NodeDistance extends TagSupport {
 	    ResultSet rs = theStmt.executeQuery();
 	    while (rs.next()) {
 		logger.trace(rs.getString(1) + ' ' + rs.getString(2) + ' ' + rs.getString(3));
-		sites += rs.getString(1) + ",";
+		sites += rs.getString(1) + " ";
+		sites_hash.put(rs.getInt(1), rs.getString(2));
 	    }
 
-	    logger.debug("Sites within our search radius are " + sites);
+	    logger.debug("Sites within our search radius are " + sites + "size of hashtable " + sites_hash.size());
 	    rs.close();
 	    theStmt.close();
 	    logger.debug("Before Filter: Number of nodes=" + nodes.size() + " Number of edges=" + edges.size());
+	    
 	    // keep nodes belonging to site above and remove others
-	    theStmt = conn.prepareStatement("select person.uri from vivo_aggregated.person where person.id not in (" + sites.substring(0, sites.length() - 1) + ")");
-	    logger.debug("Query:: " + theStmt.toString());
-	    rs = theStmt.executeQuery();
-	    while (rs.next()) {
-		uri = rs.getString(1);
-		GraphNode node = theGraph.getNode(uri);
-		if (node != null) {
-		    theGraph.removeNode(node);
-		    try {
-			if (theGraph.getNode(uri) != null) {
-			    logger.debug("Something is wrong");
-			}
-		    } catch (Exception e) {
-			e.printStackTrace();
-		    }
+	    for (int x = nodes.size() - 1; x >= 0; x--) {
+	    GraphNode n = nodes.elementAt(x);
+		if (!sites_hash.containsKey(n.getGroup("site"))){
+		logger.trace("Current node :" + n.getLabel() + " does not match the filter criteria with site:"+ n.getGroup("site"));
+		theGraph.removeNode(n);
 		}
-	    }
+		}
 	    logger.debug("After Filter: Number of nodes=" + nodes.size() + " Number of edges=" + edges.size());
 
 	    rs.close();
 	    theStmt.close();
-
 	    conn.close();
+	    
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    logger.debug(selectedNode + ' ' + radius);
