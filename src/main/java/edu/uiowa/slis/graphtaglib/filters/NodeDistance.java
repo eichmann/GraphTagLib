@@ -60,14 +60,14 @@ public class NodeDistance extends TagSupport {
 	    // Get co-authors for node and add edge to graph only if that
 	    // neighbor is within our radius
 	    PreparedStatement theStmt = conn
-		    .prepareStatement("select candidate.* from vivo_aggregated.site_loc as candidate, vivo_aggregated.site_loc as center where center.id=? and circle(center.position,(?/111.0)) @> candidate.position");
+		    .prepareStatement("select site2id, site2 from vivo_aggregated.site_distances where site_distances.site1id=? and site_distances.distance<=?");
 
 	    theStmt.setInt(1, Integer.parseInt(selectedNode));
 	    theStmt.setInt(2, radius);
 	    logger.debug("Query:: " + theStmt.toString());
 	    ResultSet rs = theStmt.executeQuery();
 	    while (rs.next()) {
-		logger.trace(rs.getString(1) + ' ' + rs.getString(2) + ' ' + rs.getString(3));
+		logger.trace(rs.getString(1) + ' ' + rs.getString(2));
 		sites += rs.getString(1) + " ";
 		sites_hash.put(rs.getInt(1), rs.getString(2));
 	    }
