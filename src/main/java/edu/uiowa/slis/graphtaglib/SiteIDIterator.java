@@ -36,15 +36,19 @@ public class SiteIDIterator extends BodyTagSupport {
 	if (siteHash != null)
 	    return;
 	siteHash = new Hashtable<Integer, String>();
-	DataSource theDataSource = (DataSource) new InitialContext().lookup("java:/comp/env/jdbc/VIVOTagLib");
-	Connection conn = theDataSource.getConnection();
-	PreparedStatement stmt = conn.prepareStatement("select id,site from vivo_aggregated.site order by id");
-	ResultSet rs = stmt.executeQuery();
-	while (rs.next()) {
-	    siteHash.put(rs.getInt(1), rs.getString(2));
+	try {
+	    DataSource theDataSource = (DataSource) new InitialContext().lookup("java:/comp/env/jdbc/VIVOTagLib");
+	    Connection conn = theDataSource.getConnection();
+	    PreparedStatement stmt = conn.prepareStatement("select id,site from vivo_aggregated.site order by id");
+	    ResultSet rs = stmt.executeQuery();
+	    while (rs.next()) {
+	        siteHash.put(rs.getInt(1), rs.getString(2));
+	    }
+	    stmt.close();
+	    conn.close();
+	} catch (javax.naming.NameNotFoundException e) {
+	    logger.error("SiteIDIterator dataSource lookup failed");
 	}
-	stmt.close();
-	conn.close();
     }
 
     public int doStartTag() throws JspException {

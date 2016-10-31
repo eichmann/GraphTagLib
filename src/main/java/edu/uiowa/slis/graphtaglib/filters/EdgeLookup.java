@@ -28,7 +28,7 @@ public class EdgeLookup extends TagSupport {
 	try {
 	    this.cls = Class.forName(this.edgeLocator);
 	    Constructor<?> con = this.cls.getConstructor(String.class);
-	    this.edgeGen = (EdgePopulator) con.newInstance("java:/comp/env/jdbc/VIVOTagLib");
+	    this.edgeGen = (EdgePopulator) con.newInstance(dataSource);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
